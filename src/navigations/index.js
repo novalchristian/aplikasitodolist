@@ -6,6 +6,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomePage from '../pages/home.page';
 import HomeDetailPage from '../pages/home-detail.page';
 import ProfilePage from '../pages/profile.page';
+import SplashPage from '../pages/splash.page';
 
 const Stack = createStackNavigator();
 function Main() {
@@ -29,11 +30,11 @@ function Main() {
   );
 }
 
+
 const Drawer = createDrawerNavigator();
-export default function Index() {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator>
+function Navigation(){
+  return(
+    <Drawer.Navigator>
         <Drawer.Screen
           name="Main"
           component={Main}
@@ -52,6 +53,28 @@ export default function Index() {
           }}
         />
       </Drawer.Navigator>
+  )
+}
+
+export default function Index() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Splash"
+          component={SplashPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Initial"
+          component={Navigation}
+          options={{
+            headerShown: false,
+          }}
+        />
+    </Stack.Navigator>
     </NavigationContainer>
   );
 }

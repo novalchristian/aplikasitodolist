@@ -1,23 +1,40 @@
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, Dimensions, TextInput} from 'react-native';
+import React, {Component, useState} from 'react';
+import {Text, View, StyleSheet, Dimensions, TextInput, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import ToDoItem from './toDoItem';
+import AddToDo from './addToDo';
 
 export default function HomeDetail({route, navigation}) {
+  const [todos, setTodos] = useState([]);
+
+  const pressHandler = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter(todo => todo.key != key)
+    })
+  }
+
+  const submitHandler = (text) => {
+    setTodos((prevTodos) => {
+      return [
+        {text: text, key: Math.random().toString()},
+        ...prevTodos
+      ];
+    })
+  }
+
   const {day} = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.topWrapper}>
         <Text style={styles.title}>{day}</Text>
       </View>
-      <View style={styles.inputWrapper}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Apa yang ingin kamu lakukan ?"
-        />
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Input</Text>
-        </TouchableOpacity>
-        </View>
+      <AddToDo submitHandler={submitHandler}/>
+      <FlatList 
+        data={todos}
+        renderItem={({item}) => (
+          <ToDoItem item={item} pressHandler={pressHandler} />
+        )}
+      />
     </View>
   );
 }
@@ -38,28 +55,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'dodgerblue',
   },
-  inputWrapper:{
-    flexDirection: 'row', 
-    marginHorizontal:20, 
-    marginTop:20, 
-    justifyContent: 'space-between'
-  },
-  textInput:{
-    flex:3,
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    paddingLeft: 10,
-  },
-  button:{
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    flex:1, 
-    backgroundColor: 'green', 
-    borderRadius: 50, 
-    marginLeft:10, 
-    width:80
-  },
-  buttonText:{
-    color: '#fff'
-  }
+  
 });
