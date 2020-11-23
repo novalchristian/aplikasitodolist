@@ -1,54 +1,53 @@
 import React, {Component, useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, TextInput, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ToDoItem from './toDoItem';
-import AddToDo from './addToDo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default class HomeDetail extends Component {
-  arr=[]
+export default class HomeDetail7 extends Component {
+  arr7=[]
   id=0
   state = {
     text: '',
-    item:[
+    item7:[
       {id:1, data:"loading"}
     ]
   };
 
     storedata = async () =>{
-      this.arr.push({id:this.id, data:this.state.text})
+      this.arr7.push({id:this.id, data:this.state.text})
       this.id++;
-      await AsyncStorage.setItem("mylist", JSON.stringify(this.arr))
+      await AsyncStorage.setItem("mylist7", JSON.stringify(this.arr7))
       this.setState({
-        item: JSON.parse(await AsyncStorage.getItem("mylist"))
+        item7: JSON.parse(await AsyncStorage.getItem("mylist7"))
       })
       console.log(this.state)
     }
 
     async componentDidMount(){
       this.setState({
-        item: JSON.parse(await AsyncStorage.getItem("mylist")) || ""
+        item7: JSON.parse(await AsyncStorage.getItem("mylist7")) || ""
       })
-      this.arr=JSON.parse(await AsyncStorage.getItem("mylist")) || []
-      this.id = this.arr[this.arr.length-1].id + 1;
+      this.arr7=JSON.parse(await AsyncStorage.getItem("mylist7")) || []
+      this.id = this.arr7[this.arr7.length-1].id + 1;
     }
 
   render(){
-    if(this.state.item.length > 0){
-      renderList = this.state.item.map(item=>{
+    if(this.state.item7.length > 0){
+      renderList = this.state.item7.map(item7=>{
       return (
-        <TouchableOpacity key={item.id} onPress={()=>{AsyncStorage.removeItem("mylist")}}>
-          <Text style={styles.item} >{item.data}</Text>
+        <TouchableOpacity key={item7.id} onPress={()=>{AsyncStorage.removeItem("mylist7")}}>
+          <Text style={styles.item} >{item7.data}</Text>
         </TouchableOpacity>
       )
       })
     }else{
-      renderList = <Text style={styles.noItems}>No Items</Text>
+      renderList = <Text style={styles.noItems}>No Activity</Text>
     }
+
     return (
       <View style={styles.container}>
         <View style={styles.topWrapper}>
-          <Text style={styles.title}>List</Text>
+          <Text style={styles.title}>ACTIVITY LIST</Text>
         </View>
 
         <View style={styles.inputWrapper}>

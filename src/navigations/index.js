@@ -4,7 +4,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomePage from '../pages/home.page';
-import HomeDetailPage from '../pages/home-detail.page';
+import HomeDetailPage1 from '../pages/home-detail1.page';
+import HomeDetailPage2 from '../pages/home-detail2.page';
+import HomeDetailPage3 from '../pages/home-detail3.page';
+import HomeDetailPage4 from '../pages/home-detail4.page';
+import HomeDetailPage5 from '../pages/home-detail5.page';
+import HomeDetailPage6 from '../pages/home-detail6.page';
+import HomeDetailPage7 from '../pages/home-detail7.page';
 import ProfilePage from '../pages/profile.page';
 import SplashPage from '../pages/splash.page';
 
@@ -20,8 +26,50 @@ function Main() {
         }}
       />
       <Stack.Screen
-        name="HomeDetail"
-        component={HomeDetailPage}
+        name="Detail1"
+        component={HomeDetailPage1}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail2"
+        component={HomeDetailPage2}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail3"
+        component={HomeDetailPage3}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail4"
+        component={HomeDetailPage4}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail5"
+        component={HomeDetailPage5}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail6"
+        component={HomeDetailPage6}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail7"
+        component={HomeDetailPage7}
         options={{
           headerShown: false,
         }}

@@ -6,36 +6,43 @@ let days = [
   {
     id: 1,
     day: 'Senin',
+    navigation: 'Detail1'
   },
   {
     id: 2,
     day: 'Selasa',
+    navigation: 'Detail2'
   },
   {
     id: 3,
     day: 'Rabu',
+    navigation: 'Detail3'
   },
   {
     id: 4,
     day: 'Kamis',
+    navigation: 'Detail4'
   },
   {
     id: 5,
     day: 'Jumat',
+    navigation: 'Detail5'
   },
   {
     id: 6,
     day: 'Sabtu',
+    navigation: 'Detail6'
   },
   {
     id: 7,
     day: 'Minggu',
+    navigation: 'Detail7'
   },
 ];
 
 export default function Home({navigation}) {
   const onPressCard = (days) => {
-    navigation.navigate('HomeDetail', days);
+    navigation.navigate(days.navigation, days);
   };
   return (
     <View style={styles.container}>
